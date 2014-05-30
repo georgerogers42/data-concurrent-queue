@@ -58,7 +58,7 @@ Example usage.
 
 > main :: IO ()
 > main = do
->   chan <- Q.newEmptyDMVar :: IO (Q.DMVar Q.TakePut Msg)
+>   chan <- newEmptyMVar :: IO (Q.DMVar Q.TakePut Msg)
 >   _ <- forkIO $ linesProc chan
 >   _ <- forkIO $ ticksProc 500 chan
 >   output "" chan
