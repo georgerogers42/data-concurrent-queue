@@ -1,5 +1,5 @@
 {-# LANGUAGE MultiParamTypeClasses, FunctionalDependencies, FlexibleInstances #-}
-module Data.Concurrent.Queue (TakeQueue(..), PutQueue(..), Take, Put, TakePut, DMVar, newDMVar, newEmptyDMVar) where
+module Data.Concurrent.Queue (TakeQueue(..), PutQueue(..)) where
 
 import Control.Concurrent
 import Control.Concurrent.STM
