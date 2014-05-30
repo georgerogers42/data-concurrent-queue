@@ -5,10 +5,10 @@ import Control.Concurrent
 import Control.Concurrent.STM
 import Control.Applicative
 
-class TakeQueue q m | q -> m where
+class TakeQueue q m where
   take :: q a -> m a
 
-class PutQueue q m | q -> m where
+class PutQueue q m  where
   put :: q a -> a -> m ()
 
 instance TakeQueue MVar IO where
@@ -26,6 +26,11 @@ instance TakeQueue TMVar STM where
 instance PutQueue TMVar STM where
   put = putTMVar
 
+
+instance TakeQueue TChan STM where
+  take = readTChan
+instance PutQueue TChan STM where
+  put = writeTChan
 
 newtype Take = Take Take
 newtype Put = Put Put

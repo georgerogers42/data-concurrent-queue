@@ -2,8 +2,8 @@
 -- further documentation, see http://haskell.org/cabal/users-guide/
 
 name:                data-concurrent-queue
-version:             0.1.0.0
--- synopsis:            
+version:             0.2.0.0
+synopsis:            A Library for directional queues
 -- description:         
 license:             MIT
 license-file:        LICENSE
