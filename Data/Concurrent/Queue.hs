@@ -31,33 +31,3 @@ instance TakeQueue TChan STM where
   take = readTChan
 instance PutQueue TChan STM where
   put = writeTChan
-
-newtype Take = Take Take
-newtype Put = Put Put
-newtype TakePut = TakePut TakePut
-
-newtype DMVar d a = DMVar (MVar a)
-
-newDMVar :: a -> IO (DMVar d a)
-newDMVar a = DMVar <$> newMVar a
-
-newEmptyDMVar :: IO (DMVar d a)
-newEmptyDMVar = DMVar <$> newEmptyMVar
-
-takeDMVar :: DMVar d a -> IO a
-takeDMVar (DMVar x) = takeMVar x
-
-putDMVar :: DMVar d a -> a -> IO ()
-putDMVar (DMVar x) a = putMVar x a
-
-
-instance TakeQueue (DMVar TakePut) IO where
-  take = takeDMVar
-instance PutQueue (DMVar TakePut) IO where
-  put = putDMVar
-
-instance TakeQueue (DMVar Take) IO where
-  take = takeDMVar
-
-instance PutQueue (DMVar Put) IO where
-  put = putDMVar
